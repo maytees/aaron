@@ -1,10 +1,12 @@
 import {
+  Confirm,
   Input,
   Secret,
 } from "https://deno.land/x/cliffy@v0.25.7/prompt/mod.ts";
 import { xml2js } from "https://deno.land/x/xml2js@1.0.0/mod.ts";
 import axiod from "https://deno.land/x/axiod/mod.ts";
 import { colors } from "https://deno.land/x/cliffy@v0.25.7/ansi/mod.ts";
+import { delay } from "https://deno.land/std@0.170.0/async/delay.ts";
 
 const parseOpts: Record<string, unknown> = {
   compact: true,
@@ -70,8 +72,16 @@ async function main() {
   // Display grades
   gradebook.Courses.Course.forEach((course: any) => {
     const attribs = course._attributes;
-    console.log("\n" + colors.bold.cyan(attribs.Title))
-    console.log("Grade: " + course.Marks.Mark[0]._attributes.CalculatedScoreString)
-    console.log("Percentage: %" + course.Marks.Mark[0]._attributes.CalculatedScoreRaw)
+    console.log("\n" + colors.bold.cyan(attribs.Title));
+    console.log(
+      "Grade: " + course.Marks.Mark[0]._attributes.CalculatedScoreString,
+    );
+    console.log(
+      "Percentage: %" + course.Marks.Mark[0]._attributes.CalculatedScoreRaw,
+    );
   });
+
+  console.log("\n\n" + colors.bold.red("Click Ctrl C to exit!"));
+
+  await delay(60000);
 }
