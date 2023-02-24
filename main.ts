@@ -69,19 +69,6 @@ async function main() {
 
   const gradebook: any = await getGrades(userId, password);
 
-  // // TESTING
-  // gradebook.Courses.Course.forEach((course: any) => {
-  //   console.log(course.Marks.Mark)
-  //   // const attribs = course._attributes;
-  //   // console.log("\n" + colors.bold.cyan(attribs.Title));
-  //   // console.log(
-  //   //   "Grade: " + course.Marks.Mark[0]._attributes.CalculatedScoreString,
-  //   // );
-  //   // console.log(
-  //   //   "Percentage: %" + course.Marks.Mark[0]._attributes.CalculatedScoreRaw,
-  //   // );
-  // });
-
   // Display grades
   gradebook.Courses.Course.forEach((course: any) => {
     const attribs = course._attributes;
